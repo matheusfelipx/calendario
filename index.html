@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Feriados - Tarumã, SP</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calendário de Feriados - Tarumã, SP</h1>
+    </header>
+    <main>
+        <div class="month-selector">
+            <button onclick="changeMonth(-1)">Mês Anterior</button>
+            <span id="current-month"></span>
+            <button onclick="changeMonth(1)">Próximo Mês</button>
+        </div>
+
+        <div class="calendar" id="calendar"></div>
+
+        <div class="holiday-list">
+            <h2>Feriados do Mês</h2>
+            <ul id="holiday-list"></ul>
+        </div>
+    </main>
+
+    <script>
+        const holidays = {
+            '2025-01-01': 'Ano Novo',
+            '2025-03-03': 'Carnaval',
+            '2025-03-04': 'Carnaval',
+            '2025-03-05': 'Carnaval',
+            '2025-04-18': 'Sexta-feira Santa',
+            '2025-04-21': 'Tiradentes',
+            '2025-05-01': 'Dia do Trabalho',
+            '2025-06-19': 'Corpus Christi',
+            '2025-07-09': 'Revolução Constitucionalista',
+            '2025-09-07': 'Independência do Brasil',
+            '2025-10-12': 'Nossa Senhora Aparecida',
+            '2025-10-15': 'Dia do Professor',
+            '2025-10-20': 'Aniversário de Tarumã',
+            '2025-10-28': 'Dia do Servidor Publico',
+            '2025-11-02': 'Finados',
+            '2025-11-15': 'Proclamação da República',
+            '2025-11-20': 'Consciência Negra',
+            '2025-11-30': 'Feriado Municipal',
+            '2025-12-25': 'Natal',
+
+            '2026-01-01': 'Ano Novo',
+            '2026-03-03': 'Carnaval',
+            '2026-03-04': 'Carnaval',
+            '2026-03-05': 'Carnaval',
+            '2026-04-18': 'Sexta-feira Santa',
+            '2026-04-21': 'Tiradentes',
+            '2026-05-01': 'Dia do Trabalho',
+            '2026-06-19': 'Corpus Christi',
+            '2026-07-09': 'Revolução Constitucionalista',
+            '2026-09-07': 'Independência do Brasil',
+            '2026-10-12': 'Nossa Senhora Aparecida',
+            '2026-10-15': 'Dia do Professor',
+            '2026-10-20': 'Aniversário de Tarumã',
+            '2026-10-28': 'Dia do Servidor Publico',
+            '2026-11-02': 'Finados',
+            '2026-11-15': 'Proclamação da República',
+            '2026-11-20': 'Consciência Negra',
+            '2026-11-30': 'Feriado Municipal',
+            '2026-12-25': 'Natal',
+
+            '2027-01-01': 'Ano Novo',
+            '2027-03-03': 'Carnaval',
+            '2027-03-04': 'Carnaval',
+            '2027-03-05': 'Carnaval',
+            '2027-04-18': 'Sexta-feira Santa',
+            '2027-04-21': 'Tiradentes',
+            '2027-05-01': 'Dia do Trabalho',
+            '2027-06-19': 'Corpus Christi',
+            '2027-07-09': 'Revolução Constitucionalista',
+            '2027-09-07': 'Independência do Brasil',
+            '2027-10-12': 'Nossa Senhora Aparecida',
+            '2027-10-15': 'Dia do Professor',
+            '2027-10-20': 'Aniversário de Tarumã',
+            '2027-10-28': 'Dia do Servidor Publico',
+            '2027-11-02': 'Finados',
+            '2027-11-15': 'Proclamação da República',
+            '2027-11-20': 'Consciência Negra',
+            '2027-11-30': 'Feriado Municipal',
+            '2027-12-25': 'Natal',
+
+
+            '2028-01-01': 'Ano Novo',
+            '2028-03-03': 'Carnaval',
+            '2028-03-04': 'Carnaval',
+            '2028-03-05': 'Carnaval',
+            '2028-04-18': 'Sexta-feira Santa',
+            '2028-04-21': 'Tiradentes',
+            '2028-05-01': 'Dia do Trabalho',
+            '2028-06-19': 'Corpus Christi',
+            '2028-07-09': 'Revolução Constitucionalista',
+            '2028-09-07': 'Independência do Brasil',
+            '2028-10-12': 'Nossa Senhora Aparecida',
+            '2028-10-15': 'Dia do Professor',
+            '2028-10-20': 'Aniversário de Tarumã',
+            '2028-10-28': 'Dia do Servidor Publico',
+            '2028-11-02': 'Finados',
+            '2028-11-15': 'Proclamação da República',
+            '2028-11-20': 'Consciência Negra',
+            '2028-11-30': 'Feriado Municipal',
+            '2028-12-25': 'Natal',
+
+
+            '2029-01-01': 'Ano Novo',
+            '2029-03-03': 'Carnaval',
+            '2029-03-04': 'Carnaval',
+            '2029-03-05': 'Carnaval',
+            '2029-04-18': 'Sexta-feira Santa',
+            '2029-04-21': 'Tiradentes',
+            '2029-05-01': 'Dia do Trabalho',
+            '2029-06-19': 'Corpus Christi',
+            '2029-07-09': 'Revolução Constitucionalista',
+            '2029-09-07': 'Independência do Brasil',
+            '2029-10-12': 'Nossa Senhora Aparecida',
+            '2029-10-15': 'Dia do Professor',
+            '2029-10-20': 'Aniversário de Tarumã',
+            '2029-10-28': 'Dia do Servidor Publico',
+            '2029-11-02': 'Finados',
+            '2029-11-15': 'Proclamação da República',
+            '2029-11-20': 'Consciência Negra',
+            '2029-11-30': 'Feriado Municipal',
+            '2029-12-25': 'Natal',
+
+
+
+            '2030-01-01': 'Ano Novo',
+            '2030-03-03': 'Carnaval',
+            '2030-03-04': 'Carnaval',
+            '2030-03-05': 'Carnaval',
+            '2030-04-18': 'Sexta-feira Santa',
+            '2030-04-21': 'Tiradentes',
+            '2030-05-01': 'Dia do Trabalho',
+            '2030-06-19': 'Corpus Christi',
+            '2030-07-09': 'Revolução Constitucionalista',
+            '2030-09-07': 'Independência do Brasil',
+            '2030-10-12': 'Nossa Senhora Aparecida',
+            '2030-10-15': 'Dia do Professor',
+            '2030-10-20': 'Aniversário de Tarumã',
+            '2030-10-28': 'Dia do Servidor Publico',
+            '2030-11-02': 'Finados',
+            '2030-11-15': 'Proclamação da República',
+            '2030-11-20': 'Consciência Negra',
+            '2030-11-30': 'Feriado Municipal',
+            '2030-12-25': 'Natal',
+
+
+            '2031-01-01': 'Ano Novo',
+            '2031-03-03': 'Carnaval',
+            '2031-03-04': 'Carnaval',
+            '2031-03-05': 'Carnaval',
+            '2031-04-18': 'Sexta-feira Santa',
+            '2031-04-21': 'Tiradentes',
+            '2031-05-01': 'Dia do Trabalho',
+            '2031-06-19': 'Corpus Christi',
+            '2031-07-09': 'Revolução Constitucionalista',
+            '2031-09-07': 'Independência do Brasil',
+            '2031-10-12': 'Nossa Senhora Aparecida',
+            '2031-10-15': 'Dia do Professor',
+            '2031-10-20': 'Aniversário de Tarumã',
+            '2031-10-28': 'Dia do Servidor Publico',
+            '2031-11-02': 'Finados',
+            '2031-11-15': 'Proclamação da República',
+            '2031-11-20': 'Consciência Negra',
+            '2031-11-30': 'Feriado Municipal',
+            '2031-12-25': 'Natal'
+        };
+
+        let currentDate = new Date();
+
+        function renderCalendar() {
+            const calendar = document.getElementById('calendar');
+            const holidayList = document.getElementById('holiday-list');
+            calendar.innerHTML = '';
+            holidayList.innerHTML = '';
+
+            const month = currentDate.getMonth();
+            const year = currentDate.getFullYear();
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            document.getElementById('current-month').textContent = currentDate.toLocaleDateString('pt-BR', {
+                month: 'long',
+                year: 'numeric'
+            });
+
+            const dayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+            dayNames.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day header';
+                dayElement.textContent = day;
+                calendar.appendChild(dayElement);
+            });
+
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('div');
+                emptyCell.className = 'day';
+                calendar.appendChild(emptyCell);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateString = date.toISOString().split('T')[0];
+
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.textContent = day;
+
+                if (holidays[dateString]) {
+                    dayElement.classList.add('holiday');
+                    const holidayItem = document.createElement('li');
+                    holidayItem.textContent = `${day} - ${holidays[dateString]}`;
+                    holidayList.appendChild(holidayItem);
+                }
+
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        function changeMonth(offset) {
+            currentDate.setMonth(currentDate.getMonth() + offset);
+            renderCalendar();
+        }
+
+        renderCalendar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #003879f1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .day {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .day.header {
+            font-weight: bold;
+            background-color: #eaeaea;
+        }
+
+        .holiday {
+            background-color: #ffcccb;
+        }
+
+        .month-selector {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .month-selector button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .holiday-list {
+            margin-top: 20px;
+        }
+
+        .holiday-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .holiday-list li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .calendar {
+                grid-template-columns: repeat(7, 1fr);
+            }
+
+            .day {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .month-selector button {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar {
+                grid-template-columns: repeat(7, 1fr);
+            }
+
+            header {
+                padding: 15px;
+                font-size: 18px;
+            }
+
+            .day {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            .month-selector button {
+                font-size: 10px;
+                padding: 6px;
+            }
+        }
